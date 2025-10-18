@@ -40,7 +40,8 @@ packages:
   icon_fonts: github://landonr/homeThing/common/icon_fonts.yaml@main
   settings: github://landonr/homeThing/common/settings.yaml@main
   images: github://landonr/homeThing/common/images.yaml@main
-  nowPlayingImage: github://landonr/homeThing/common/nowPlayingImage.yaml@main
+  # nowPlayingImage: github://landonr/homeThing/common/nowPlayingImage.yaml@main
+  nowPlayingImage: !include common/nowPlayingImage.yaml
   voice_assistant: github://landonr/homeThing/common/voice_assistant.yaml@main
   logger: github://landonr/homeThing/common/logger.yaml@main
 
@@ -56,7 +57,7 @@ substitutions:
   friendly_name: "homeThing S3"
   rotary_pin_a: "10"
   rotary_pin_b: "11"
-  medium_font_size: "16"
+  medium_font_size: "24"
   battery_pin: "4"
   sda_pin: "44"
   scl_pin: "43"
@@ -76,18 +77,12 @@ light:
 
 ### Media Players
 
-media_player_source_sonos: # sonos favorite source
-  id: sonos
-
 media_player: # home assistant media players
   - platform: homeassistant_media_player
     name: Beam
-    entity_id: "media_player.beam"
+    entity_id: "media_player.family_room"
     id: media_player_beam
     type: speaker
-    sources:
-      - id: sonos
-        type: sonos
   - platform: homeassistant_media_player
     name: TV
     entity_id: "media_player.55_tcl_roku_tv"
@@ -279,10 +274,6 @@ homeThing:
   battery:
     battery_percent: battery_percent
     charging: charging
-  boot:
-    api_connected: api_connected
-    media_players_loaded: media_players_loaded_sensor
-    launch_image: launch_image
   display: my_display
   header:
     time_id: esptime
@@ -292,7 +283,7 @@ homeThing:
       component.update: my_display
   settings:
     sleep_after: 3600
-    display_timeout_while_charging: 30
+    display_timeout_while_charging: 0
     idle_app: now_playing
     max_brightness: 0.5
   sleep_switch: sleep_toggle

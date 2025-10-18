@@ -1108,11 +1108,11 @@ void HomeThingMenuBase::debounceUpdateDisplay() {
 bool HomeThingMenuBase::display_can_fade_out() {
   int display_timeout_while_charging =
       menu_settings_->get_display_timeout_while_charging();
+  if (display_timeout_while_charging == 0) {
+    return false;
+  }
   if (get_charging()) {
-    if (display_timeout_while_charging > 0)
-      return idleTime == display_timeout_while_charging - 4;
-    else
-      return false;
+    return idleTime == display_timeout_while_charging - 4;
   }
   return idleTime == menu_settings_->get_display_timeout() - 4;
 }

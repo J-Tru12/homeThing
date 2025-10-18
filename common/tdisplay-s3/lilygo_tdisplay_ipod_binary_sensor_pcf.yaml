@@ -168,7 +168,7 @@ i2c:
   scl: $scl_pin
   # scan: TRUE
   id: i2cBusA
-  frequency: 100hz
+  frequency: 100kHz
 
 pcf8574:
   - id: 'pcf8574_hub'
